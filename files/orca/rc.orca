@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# /etc/rc.d/rc.orca : start or stop the Orca server analysis.
+#
+# Written by >NIL: <nil@rpc1.org>
+#
+# Configuration
+
+# set config file & path to orca
+ORCA_PATH=/usr/local/bin
+CONFIG=/etc/orca.cfg
+
+test -x $ORCA_PATH/orcadata.pl || exit 0
+test -x $ORCA_PATH/orca || exit 0
+
+case "$1" in
+     start)
+        echo "Starting Orca"
+        nohup /usr/local/bin/orcadata.pl >/dev/null 2>/dev/null &
+        sleep 1
+        nohup /usr/local/bin/orca -v /etc/orca.cfg >/dev/null 2>/dev/null &
+	;;
+     stop)
+        echo "Stoping Orca"
+#	kill `ps -ef | grep orcadata | grep -v grep | tr -s " " | cut -f 2 -d " "`
+	pkill orca
+	;;
+     restart)
+        $0 stop
+        $0 start
+        ;;
+     *)
+        echo 'Usage: /etc/rc.d/rc.orca {start|stop|restart}'
+        exit 1
+esac
+exit 0
+;;

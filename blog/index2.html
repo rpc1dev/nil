@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11">
+
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>&nbsp;&gt;NIL:’s Blog</title>
+
+	
+	
+	<meta name="generator" content="WordPress 1.5.2"><!-- leave this for stats please --> 
+
+	<style type="text/css" media="screen">
+		@import url( style.css );
+	</style>
+
+
+<style type="text/css">
+.hilite {
+	color: #fff;
+	background-color: #f93;
+}
+</style></head><body>
+
+<div id="rap">
+<h1 id="header">&nbsp;&gt;NIL:’s Blog</h1>
+
+<div id="content">
+<!-- end header -->
+
+
+<h2>2003.10.23 (Thursday)</h2>	
+<div class="post" id="post-20">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=20" rel="bookmark">A forum revamped version of this could be useful…</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=17" title="View all posts in rpc1.org" rel="category tag">rpc1.org</a> — &gt;NIL: @ 16:50:00 GMT (1066927800 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=20">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p><a href="http://www.catb.org/%7Eesr/faqs/smart-questions.html">http://www.catb.org/~esr/faqs/smart-questions.html</a>
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.10.05 (Sunday)</h2>	
+<div class="post" id="post-19">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=19" rel="bookmark">Perl script to remove %20 spaces from all the files in the current directory</a></h3>
+
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=6" title="View all posts in Development" rel="category tag">Development</a> — &gt;NIL: @ 22:58:12 GMT (1065394692 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=19">Edit This</a> </div>
+	
+	<div class="storycontent">
+			<pre>	#!/usr/bin/perl
+	foreach $file(`ls -1`)
+	{
+		chomp ($file);
+		$newfile = $file;
+		$newfile =~ s/%20/ /g;
+		if (!($newfile eq $file))
+		{
+			print `mv $file '$newfile'`;
+		}
+	}</pre>
+
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.10.02 (Thursday)</h2>	
+<div class="post" id="post-18">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=18" rel="bookmark">Security is paramount - Episode 1</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 23:28:52 GMT (1065137332 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=18">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Something to start with: <a href="http://www.onlamp.com/lpt/a/3278">http://www.onlamp.com/lpt/a/3278 </a>:</p>
+	<pre>	netstat -an
+	lsof
+	nmap -v -P0 -sU -p 1-65535 &lt;ip&gt;
+	tripwire</pre>
+	</div>
+
+	
+
+</div>
+
+
+
+<h2>2003.10.01 (Wednesday)</h2>	
+<div class="post" id="post-17">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=17" rel="bookmark">Configuring Bloody MySQL on Slackware 9.0</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 12:59:52 GMT (1065013192 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=17">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<pre>&gt; /usr/bin/mysql_install_db
+&gt; cd /var/lib
+&gt; chown -R mysql mysql
+&gt; cp /etc/my-medium.cnf /etc/my.cnf
+&gt; safe_mysqld --user=mysql &amp;
+&gt; mysqladmin -u root password
+(To change the password again: mysqladmin -u root -p password )
+&gt; cp /usr/share/mysql/mysql.server /etc/rc.d/rc.mysql
+edit rc.M and rc.6 to add the calls to rc.mysql start/stop eg:
+# Start mysql
+if [ -x /etc/rc.d/rc.mysql ]; then
+  . /etc/rc.d/rc.mysql start
+fi </pre>
+
+	</div>
+	
+
+</div>
+
+
+
+	
+<div class="post" id="post-16">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=16" rel="bookmark">Information wants to be free</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=16" title="View all posts in Advocacy" rel="category tag">Advocacy</a> — &gt;NIL: @ 11:46:36 GMT (1065008796 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=16">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p><em>‘If
+nature has made any one thing less susceptible than all others of
+exclusive property, it is the action of the thinking power called an
+idea, which an individual may exclusively possess as long as he keeps
+it to himself; but the moment it is divulged, it forces itself into the
+possession of everyone, and the receiver cannot dispossess himself of
+it. Its peculiar character, too, is that no one possesses the less,
+because every other possesses the whole of it. He who receives an idea
+from me, receives instruction himself without lessening mine; as he who
+lights his taper at mine, receives light without darkening me. That
+ideas should freely spread from one to another over the globe, for the
+moral and mutual instruction of man, and improvement of his condition,
+seems to have been peculiarly and benevolently designed by nature, when
+she made them, like fire, expansible over all space, without lessening
+their density at any point, and like the air in which we breathe, move,
+and have our physical being, incapable of confinement or exclusive
+appropriation. Inventions then cannot, in nature, be a subject of
+property.’</em> - Thomas Jefferson<br>
+<a href="http://www.wired.com/wired/archive/2.03/economy.ideas_pr.html">http://www.wired.com/wired/archive/2.03/economy.ideas_pr.html</a>
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.08.22 (Friday)</h2>	
+<div class="post" id="post-15">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=15" rel="bookmark">Increase default security on sshd</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 09:20:36 GMT (1061544036 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=15">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>in /etc/ssh/sshd_config:
+</p><pre>Protocol 2
+PermitRootLogin no
+PermitEmptyPasswords no</pre>
+	<p>Also, might be interesting to have a look at: <a href="http://www.snort.org/docs/snort_acid_rh9.pdf">http://www.snort.org/docs/snort_acid_rh9.pdf </a>
+</p>
+	</div>
+	
+
+</div>
+
+
+<h2>2003.08.21 (Thursday)</h2>	
+<div class="post" id="post-14">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=14" rel="bookmark">Bounce back mail sent to unknown address</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 15:19:29 GMT (1061479169 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=14">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Comment out the following in sendmail.mc:</p>
+	<p><code>define(`LUSER_RELAY', `local:catch-all')dnl</code></p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.08.18 (Monday)</h2>	
+
+<div class="post" id="post-13">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=13" rel="bookmark">Breaking a corporate firewall in 2 easy steps</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=15" title="View all posts in Hacking" rel="category tag">Hacking</a> — &gt;NIL: @ 13:10:03 GMT (1061212203 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=13">Edit This</a> </div>
+	
+	<div class="storycontent">
+
+			<p>This
+situation supposes that you have 2 Unix servers (preferably Linux) at
+your disposal, one inside the firewall, and one outside, both running
+openssh, and that the ssh port is not firewalled. If you can’t use ssh
+(port 22) you’ll need to reconfigure ssh on both the machines to use a
+non firewalled port instead (eg. 80). </p>
+	<p>We’ll call server A
+the machine inside the firewall (eg. Corporate UNIX server), and client
+B the outside one (eg. A Linux PC @ home from where you want to connect
+to your Corporate UNIX server)</p>
+	<p>1/ Follow the tutorial at <a href="http://www.cs.uwa.edu.au/%7Eryan/tech/ssh-no-password.html">http://www.cs.uwa.edu.au/~ryan/tech/ssh-no-password.html</a> and get DSA hostbase authentfication login from server A to client B.</p>
+	<p>2/
+Once you can log in to your client B from Corporate Server A without
+being prompted for a password, just find a way to configure your server
+(mail watch, URL polling, etc.) so that it runs the following when you
+want to connect:</p>
+	<p><code>ssh -R 118:`hostname`:23 user@client.machine.B -N &gt; /dev/null 2&gt;&amp;1 &amp;</code></p>
+
+	<p>This
+will open an ssh connection from server A to client machine B which
+will map port 118 (or whatever you chose) of B to port 23 (telnet) of
+server A.</p>
+	<p>Therefore, provided that you have telnetd running on the server, now you can log on to it with the command:</p>
+	<p><code>telnet localhost 118</code></p>
+	<p>Now, isn’t ssh a great toy?
+</p>
+	</div>
+	
+
+</div>
+
+
+<h2>2003.08.17 (Sunday)</h2>	
+<div class="post" id="post-12">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=12" rel="bookmark">S.M.A.R.T. Monitoring tool for Linux</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=7" title="View all posts in Hardware" rel="category tag">Hardware</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 23:50:23 GMT (1061164223 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=12">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>We’re gonna need this tool on our new server:<br>
+<a href="http://smartmontools.sourceforge.net/">http://smartmontools.sourceforge.net/</a>
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.08.16 (Saturday)</h2>	
+
+<div class="post" id="post-11">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=11" rel="bookmark">Opening ‘My Computer’ instead of ‘My Documents’ in explorer</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 21:41:12 GMT (1061070072 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=11">Edit This</a> </div>
+	
+	<div class="storycontent">
+
+			<p><code>explorer.exe /n,/e,::{20D04FE0-3AEA-1069-A2D8-08002B30309D}</code>
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.08.15 (Friday)</h2>	
+<div class="post" id="post-10">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=10" rel="bookmark">Disabling stupid MSN Search in IE</a></h3>
+
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 16:56:56 GMT (1060966616 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=10">Edit This</a> </div>
+	
+	<div class="storycontent">
+			<p>Well,
+the thing is, you type an URL with a typo in IE, and bloody MSN search
+pops up and changes your Address Bar =&gt; you have to remove the extra
+stuff manually before you can correct the typo. Of course this is
+turned on by default. How irritating can MS go, sometimes I wonder.</p>
+
+	<p>Anyway, to disable this: Options-&gt;Advanced-&gt;Search from the Address Bar-&gt;Do not search from the address.
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.08.14 (Thursday)</h2>	
+<div class="post" id="post-9">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=9" rel="bookmark">Enabling broadcast X11 server (kdm) on Slackware 9.0</a></h3>
+
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 15:46:49 GMT (1060876009 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=9">Edit This</a> </div>
+	
+	<div class="storycontent">
+			<pre>o /opt/kde/share/config/kdm/XAccess, uncomment BOTH:
+*                                       #any host can get a login window
+*               CHOOSER BROADCAST       #any indirect host can get a chooser</pre>
+	<pre>o /opt/kde/share/config/kdm/kdmrc
+[Xdmcp]
+# Whether KDM should listen to XDMCP requests. Default is true.
+Enable=true
+AllowRootLogin=true</pre>
+
+	</div>
+	
+
+</div>
+
+
+
+<h2>2003.07.25 (Friday)</h2>	
+<div class="post" id="post-7">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=7" rel="bookmark">Sony KV-20WS1B Service Mode</a></h3>
+
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=11" title="View all posts in HiFi / Video" rel="category tag">HiFi / Video</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=12" title="View all posts in Hardware 2" rel="category tag">Hardware 2</a> — &gt;NIL: @ 10:00:50 GMT (1059127250 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=7">Edit This</a> </div>
+	
+	<div class="storycontent">
+			<p>Now, this is what this blog is all about.</p>
+	<p>Yesterday
+(or rather this morning around 2:30 AM), I discovered how to enter the
+Service Mode of my 6 year old Sony KV-20WS1B widescreen TV. </p>
+
+	<p>While
+I was looking for the service manual of some other Sony equipment that
+I have (a Sony MHC-NX3AV 5.1 HiFi system that seems to have trouble
+reading burned CD’s and where I am sure a little precision calibration
+–the one where you don’t use a hammer– would sort things out), I found
+a lot of information on how to enter Sony TVs’ service mode, and I
+obviously had to give it a try <img src="blog_page2_files/icon_wink.gif" alt=";)" class="wp-smiley">  Now, if only I could find a service manual or how to enter the service mode of my Hi-Fi system, that would be heaven. </p>
+	<p>Of
+course, the main problem we have here is that, Sony and other
+manufacturers don’t give a damn about their consumers, and they would
+never put a service manual online, oh no! It’s just too frightening to
+consider your consumers could be smart enough to service their
+equipment themselves. Better take for granted that they are nothing but
+a bunch of brainless apes who know only one thing: how to destroy
+equipment. </p>
+	<p>Thankfully, there exist some sites where more
+enlightened people decide to share the holy grail of information (the
+actual useful kind), and I was able to find some of the most
+interesting pieces of technical information I have seen in a very long
+time. And as I begin this blog, it is also some kind of pledge that I
+take, to try to provide as much useful information as I can in the
+technical sections for all the frustrated little guys like myself out
+there… INFORMATION HAS TO BE FREE!!!</p>
+	<p>So here we go. To enter the service mode of a Sony KV-20WS1B widescreen TV do the following:</p>
+	<ul>
+	<li>Get the TV is standby mode</li>
+
+	<li>On
+the remote, press [i+], [5], [Vol +], [TV mode] (i+ is the On Screen
+Display button, and TV mode is located just before the teletext mode at
+the top of the remote) You have to press all of these in the proper
+order, and within 1 second to be able to enter the Service Mode.</li>
+	</ul>
+	<p>Apparently,
+a similar kind of trick works on a whole bunch of Sony TVs. If you do
+it properly, the TV will power up and you’ll get a text page with TT__
+on the top right corner. At this point you’d rather press the menu
+button on the remote to make sure you don’t enter a command by mistake,
+unless you know what you’r doing. A command is a 2 digit number that
+you enter on the remote after TT, and knowing that some of these
+commands can erase the flash ROM of your TV, you’d better be careful
+with what you do here. </p>
+	<p>And now comes the hardest part: Figuring it all out…</p>
+	<p>Well,
+there are a few adjustements I’ve always been wanting to make on that
+TV (like the fact that in zoom 1 mode, the image doesn’t start off the
+screen, and it looks ugly, or the fact that the trapezoidal is really
+trapezoidal and not rectangle…)<br>I guess I’ll have to get the service manual to figure out all that. Of course, I’ll let you know here how I get along…</p>
+	</div>
+
+	
+
+</div>
+
+
+
+<a href="index.html">« Previous Page</a> — 
+<!-- begin footer -->
+</div>
+
+
+
+<p class="credit"><cite>Once powered by <a href="http://wordpress.org/" title="Once powered by WordPress, state-of-the-art semantic personal publishing platform."><strong>WordPress</strong></a></cite></p>
+
+</div>
+
+
+</body></html>

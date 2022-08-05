@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta name="generator" content="Adobe GoLive" />
+		<title>PSP Remote</title>
+		<link href="css/basic.css" rel="stylesheet" type="text/css" media="all" />
+	</head>
+
+	<body>
+		<div align="center">
+			<p><font size="+3">Interfacing with the PSP Remote port</font></p>
+			<p><a title="PSP Serial Converter in action!" href="pics/remote_09.jpg"><img src="pics/remote_09s.jpg" alt="" width="450" height="300" border="0" /></a><br />(click on the image above for bigger view)</p>
+		</div>
+		<p><br />
+		</p>
+		<p><strong>DISCLAIMER:</strong></p>
+		<p>THE INFORMATION ON THIS AND RELATED PAGES/FILES IS PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE.</p>
+		<p>THE ENTIRE RISK AS TO THE ABILITY TO USE ANY OF THE INFORMATION PROVIDED HERE TO INTERFACE WITH THE REMOTE PORT OF A SONY PORTABLE PLAYSTATION (PSP) IS WITH YOU. SHOULD ANY OF THE INFORMATION PROVE INACCURATE OR ERRONEOUS, THE AUTHOR OF THIS PAGE IS <strong>NOT</strong> LIABLE AND YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
+		<p><br />
+		</p>
+		<p><strong>DESCRIPTION</strong>:</p>
+		<p>o Overview</p>
+		<p>As already revealed <a title="ps2dev.org forums" href="http://forums.ps2dev.org/viewtopic.php?t=986">here</a> and <a title="Marcus Comstedt's PSP Remote port analysis" href="http://mc.pp.se/psp/phones.xhtml">here</a>, the Remote port of the PSP is in fact a serial port, and the remote is being handled through a standard RS232 protocol, albeit using [0,+2.5V] voltage instead of [-12,+12V]. Therefore the question is; is it possible to connect the PSP remote port to a PC serial port? The answer is yes!<br />
+			Of course, you can <strong>NOT</strong> plug a PSP <strong>directly</strong> into a PC serial port (unless you want to fry it beyond repairs), but with a simple serial line converter this is no trouble at all, and you can then exploit a standard serial port out of the PSP.<br />
+			The purpose of this page is to explain how to do this.</p>
+		<p>o Why is having serial communications between a PSP and a PC an interesting feat?</p>
+		<p>This is interesting because it can provide us with a very wide array of facilities:<br />
+			- Debug output for application development:<br>
+                        &nbsp;&nbsp;&nbsp;<i><b>This is already happening - Check out the excellent <a href="http://forums.ps2dev.org/viewtopic.php?p=31634#31634">PSPLink</a> by TyRaNiD!</i></b><br />
+			- Serial console for any Linux port (a must have device indeed!) or any other applications<br />
+			- The serial protocol is a simple, well known and robust protocol, with loads of existing applications ready to be used. You could even use a PSP for dial up access or GPS!<br />
+			- Hijacking the UART4 PSP driver to use the Remote UART <strong>might</strong> give us access to the low level debug functions of the PSP without the need to tear it apart in order to access the internal UART4<br />
+				Also:<br />
+			- The remote is a very optional device for the PSP =&gt; it can be used for other purposes (eg. debug) without interfering with standard operations (USB, WiFi, ...)<br />
+				- As a serial device, IRDA could be used as well, but not everybody has an IRDA receiver. On the other hand, almost every computer out there has a serial port (sorry Mac users - this is the one thing that Apple did get wrong!)<br />
+				- The cable is very inexpensive/simple to build (see below), and not doubt someone out there will be selling ready made cables for the PSP at some stage<br />
+				- <strong>Rumoured</strong> additional capabilities of the Remote Port like re-flash (this is <strong>very </strong>doubtful, but who knows...)<br />
+			- The Remote driver is probably the best driver to experiment with for development (low footprint, simple, loads of serial code samples out there)</p>
+		<p>Of course, <strong>at the moment, the only use we have for this serial port is to emulate the PSP remote, but this is likely to change in the future</strong>.</p>
+		<p>o So what next?</p>
+		<p>- Reverse engineering of the sceHP_Remote_Driver to see if there are additional features to standard remote operations<br />
+			- Unload of the sceHP_Remote_Driver and replacement with our own custom serial driver<br />
+			- Hijack the Uart4 driver and replace it by an equivalent driver using the Remote Port<br />
+			- Linux on the PSP! :D</p>
+		<p><br />
+		</p>
+		<p><strong>THE DEVICE</strong>:</p>
+		<p>o Details:</p>
+		<p>Various IC manufacturers do provide serial line voltage converters. In this montage we use a <a href="https://pdfserv.maximintegrated.com/en/ds/MAX3222-MAX3241.pdf">MAX3232</a> serial line converter, which, though listed for voltages above +3.0V, handles the +2.5V signals of the PSP just fine. Such a montage uses a handful of capacitors for the charge pump, but that's really all there is to it, therefore it is very simple and inexpensive to build - Anybody can build one.<br />
+		</p>
+		<p>o Diagram:<br />
+                        - Click on the image below to access the schematics (PDF)<br>
+                        <a href="files/PSP%20Serial%20Converter.pdf"><img src="pics/diagram.png" border="0"></a><br>
+			- Because the PSP can switch power off on the serial line, we want to have a way to check if our device is powered or not. To this effect we use the V+ output of the MAX3232 which we connect to the CTS pin of the RS232 connector (Of course, using the DSR pin would have been preferable, but the DB9 &lt;-&gt; RJ45 adapters that we use don't have this pin readily available).</p>
+		<p>o List of components:<br />
+			- 5 x 0.1 uF ceramic capacitors<br />- 1 x MAX3232CPE - If you're going to build this montage, make sure you get the DIP version of the MAX3232 (= MAX3232CPE). Soldering SSOP or TSSOP by hand is simply NO FUN!<br />
+				- Connectors (eg. DB9 female), cables, development PCB, etc.</p>
+		<p>o Building the device:</p>
+		<p>I strongly advise getting your hands on one of these DB9&lt;-&gt;RJ45 serial adapters pictured below (click on the image for bigger picture):</p>
+		<p><a title="DB9 - RJ45 serial converter" href="pics/remote_10.jpg"><img src="pics/remote_10s.jpg" alt="" width="450" height="300" border="0" /></a></p>
+		<p>Because our serial converter is such a small montage, it is actually possible to fit it perfectly into one of these adapters. If you pry open one of these adapters (one notch above the RJ45 part and 4 for the DB9 plate), you will find that the RJ45 part slides into the DB9 housing, and it is the perfect size to fit small sliding PCB.<br />
+			The DB9 part usually only has cabling for RxD, TxD, CTS, RTS and GND, so just cut the RJ45 part out and keep RTS as much as you can, since we will not be using it at all (double<br />
+			check that you are indeed cutting RTS and not CTS!). Keep about 2-3 cm of the other connectors.<br />On the opposite hand of the PCB, you can use a right angle 4 ways 2.54 mm Molex connector. If you remove the comb structure of the RJ45 part from the socket (it's all plastic), the molex<br />
+				connector should slide easily in place.</p>
+		<p>Below are pictures of the insides of the device (click on each image for bigger view):</p>
+		<p><a title="PSP Serial Converter: Front" href="pics/remote_01.jpg"><img src="pics/remote_01s.jpg" alt="" width="450" height="300" border="0" /></a> <a title="PSP Serial Converter: Side" href="pics/remote_03.jpg"><img src="pics/remote_03s.jpg" alt="" width="450" height="300" border="0" /></a></p>
+		<p><a title="PSP Serial Converter: Back" href="pics/remote_04.jpg"><img src="pics/remote_04s.jpg" alt="" width="450" height="300" border="0" /></a> <a title="PSP Serial Converter: Slider" href="pics/remote_05.jpg"><img src="pics/remote_05s.jpg" alt="" width="450" height="300" border="0" /></a></p>
+		<p>The finished device (click on the image for bigger picture):</p>
+		<p><a title="PSP Serial Converter: Finished device" href="pics/remote_06.jpg"><img src="pics/remote_06s.jpg" alt="" width="450" height="300" border="0" /></a></p>
+		<p><br />
+		</p>
+		<p><strong>CABLE AND CONNECTORS:</strong></p>
+		<p>The interest of using a 2.54 mm Molex connector is that you can then use a standard 4 ways Analog CD - Audio Card cable to connect to the PSP. The only problem is that you need a cable with 4 actual connectors. Manufacturers are going so cheap these days that they are using 3 conductors instead of 4, so finding a proper cable can be a bit of a pain. Of course, you can always build your own cable, but the advantage of using an Audio Card cable is that you can easily reorganize the crimp connectors at each end, instead of having to fit those yourselves.</p>
+		<p><a title="PSP Remote serial cable" href="pics/remote_07.jpg"><img src="pics/remote_07s.jpg" alt="" width="450" height="300" border="0" /></a> <a title="PSP Remote serial connector" href="pics/remote_08.jpg"><img src="pics/remote_08s.jpg" alt="" width="450" height="300" border="0" /></a></p>
+		<p>On the PSP end, you will obviously need to build a custom remote connector (the small part with 6 pins in the picture above). To achieve this, you can cut a double sided copper PCB into shape, using the original remote connector as guide. Then you can draw the 6 contacts with a cutter or any sharp object. Make sure you have a tight fit, and plug the PCB in place a few times before scratching the copper out, as this should leave very visible contact marks. Thoroughly check that each contact is isolated from the others before using the connector.<br />
+			On the other end, you should be able to solder a 2.54 mm Molex 6 ways/dual row connector.</p>
+		<p>Before soldering, make sure that you leave enough room to be able to connect the headphones connector on the left side: Remember, <strong>the audio connector MUST be plugged in for the remote port to be powered!</strong><br />
+			Once you have the Molex dual row connector soldered in, you can use a 6 ways/double row housing to fit your audio cable in there - easy! ;)</p>
+		<p><br />
+		</p>
+		<p><strong>SOFTWARE PSP REMOTE FOR LINUX: PSP_REMOTE v1.00</strong></p>
+		<p><a title="psp_remote sample output" href="pics/psp_remote.png"><img src="pics/psp_remote_s.png" alt="" width="442" height="280" border="0" /></a><br />
+			(click on image for bigger view)</p>
+		<p><strong>psp_remote v1.00</strong> is a sample Linux program that emulates the PSP Remote on a PC. It is meant to be used with the PSP Serial Converter device above. You need to be root to run it and have the ncurses library installed (any decent distribution of Linux should have it)<br />This program simply reads a numeric key and sends the associated PSP Remote code. It is more a proof of concept for serial communications between a PC and a PSP than anything else.<br />
+			For more information on the PSP Remote protocol, have a look at the <a href="http://forums.ps2dev.org/viewtopic.php?t=986">ps2dev.org thread</a> or <a href="http://mc.pp.se/psp/phones.xhtml">Marcus' page</a>.</p>
+		<p>This program was compiled and tested on Slackware 10.0.</p>
+		<p>Download: <a title="psp_remote v1.00" href="https://github.com/rpc1dev/psp_remote/releases/download/v1.00/psp_remote_v1.00.tgz">psp_remote_v1.00.tgz</a></p>
+		<p><br />
+		</p>
+		<p><strong>THANKS TO</strong>:</p>
+		<p>- ps2dev.org and contributors<br />
+			- Marcus Comstedt et al. for their excellent analysis of the Remote pinout and protocol<br />- MAXIM IC for the free samples (although I did buy the one I used!)</p>
+	</body>
+
+</html>
+

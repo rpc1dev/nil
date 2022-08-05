@@ -1,0 +1,727 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11">
+
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>&nbsp;&gt;NIL:'s Blog</title>
+
+	
+	
+	<meta name="generator" content="WordPress 1.5.2"><!-- leave this for stats please --> 
+
+	<style type="text/css" media="screen">
+		@import url( style.css );
+	</style> 
+
+<style type="text/css">
+.hilite {
+	color: #fff;
+	background-color: #f93;
+}
+</style></head><body>
+<div id="rap">
+<h1 id="header">&nbsp;&gt;NIL:'s Blog</h1>
+
+<div id="content">
+<!-- end header -->
+
+
+<h2>2007.01.16 (Tuesday)</h2>	
+<div class="post" id="post-42">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=42" rel="bookmark">End of line</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=1" title="View all posts in General" rel="category tag">General</a> — site admin @ 22:10:00 GMT (1168985400 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=42">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Let's
+face it, I have no real plan to continue blogging in here, and as much
+as I like WordPress, I can't be ars… I mean bothered to have to update
+the engine everytime a new vulnerability is discovered.<br>
+The lazy hacker™ solution then: save the meagre posts that exist on
+these pages, upload good old trusted static HTML and get all ye script
+kiddies to go to hell…</p>
+	<p>Why, thank you; you’ve been a wonderful audience to an increasingly disgruntled old man…
+</p>
+	</div>
+	
+</div>
+
+
+
+<h2>2006.02.24 (Friday)</h2>	
+<div class="post" id="post-41">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=41" rel="bookmark">But why would you ever bring that rotten Microsoft stuff under Linux?</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 16:59:15 GMT (1140800355 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=41">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Well,
+if you live in a corporate world that swears by the National Socialism
+Microsoft crap, you might, one day, have to mount some Active Directory
+shares on a Linux server. I know, you’ll feel dirty all over from
+bringing that abomination to Linux, but some people never learn…</p>
+	<p>So here goes:<br>
+1) create a file auth.smb with the following:<br>
+username = DOMAIN/username<br>
+2) run the command:<br>
+smbmount //server/share /mnt/share -o “credentials=./auth.smb,uid=userid,gid=userid,fmask=644,dmask=775?</p>
+	<p>Why
+the ‘username=’ option of smbmount doesn’t work is something I don’t
+care about. The goal is to quickly get over this and move on <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley">
+
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2005.09.21 (Wednesday)</h2>	
+<div class="post" id="post-40">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=40" rel="bookmark">And again…, part 3</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 17:09:19 GMT (1127322559 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=40">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>… or more like 2 days. </p>
+	<p>Well,
+I gotta give my IS dept. some credit. It only took ‘em a couple of days
+to figure out that tunneling was an option and to ramp up security to
+disable any inbound packet that does not come as a reply to a previous
+outbound one. Now we’re talking about something that looks like a real
+firewall!<br>
+Now, I’d rather blame the makers of httptunnel for not seeing that one
+coming. I mean, come on guys, it would have been child’s play to
+conceal tunneled data into what looks like an innocuous HTTP binary
+file download (of unknown size) for inbound data, and an HTTP POST
+request for outbound.</p>
+	<p>But hey, when a door closes, a Window opens. “…and introducing: <a href="http://www.rkeene.org/oss/rutil_tcpcgi/">TCP-over-CGI (rutil_tcpcgi)</a>!”<br>
+The only drawback is you need a webserver to place the cgi (but you don’t need root access there).</p>
+
+	<p>Now,
+assuming that the cgi is running on your remote server, with the URL:
+‘http://10.0.0.1/cgi-bin/tcpcgi.cgi’, and that this server is also the
+machine you are trying to ssh to, then on the UNIX server you want to
+connect <strong>from</strong>:<br>
+<code>tcpcgi -H 10.0.0.1 -f /cgi-bin/tcpcgi.cgi -d 127.0.0.1:22 -x 1000<br>
+ssh -v login@localhost -p 9111 -o NoHostAuthenticationForLocalhost=yes -o PubkeyAuthentication=no</code></p>
+	<p>For
+some reason, I found that my public key authentication was screwed up
+by tcpcgi (Ugh! I’ll have to re-enable password logon on my ssh box)
+and it also appears to choke on a large flow of data (=&gt; no sftp,
+which is a bit annoying). Plus you have to reduce the max latency time
+(-x) quite a bit if you go for an interactive shell. The algorithm is
+adaptive, which is nice, but the default possible max of 60 secs is
+not. Apart from that, this little utility does exactly what it says on
+the tin, and it’ll sure be quite a challenge for a corporate IS dept.
+to overcome.</p>
+	<p>Hey, if I find the proper motivation, I might even end up coding my own version of an HTTP wrapper for ssh… <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley">
+
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2005.09.19 (Monday)</h2>	
+<div class="post" id="post-39">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=39" rel="bookmark">Breaking a corporate firewall, part 2</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 20:55:06 GMT (1127163306 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=39">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>And so, <a href="http://nil.rpc1.org/wordpress/?p=13">2 years later</a>,
+your IS dept. finally realized what a double edged sword ssh really
+was, and not only did they disable the ssh port (not a big deal) but
+they also monitor and forbid any ssh like traffic on any port. Getting
+better guys! Well, if you’re lucky, they’ll want you to use an
+ssh-relay box that they can monitor or something, but hey, I’m just not
+the kind of guy that likes to be monitored, and I still want to connect
+to my Linux box @ home without anybody peeking over my shoulder.</p>
+	<p>Well, <a href="http://www.nocrew.org/software/httptunnel.html">here (GNU httptunnel)</a> we go:</p>
+	<p>As root, on the box you are trying to access:<br>
+<code>hts -F localhost:22 80</code></p>
+
+	<p>And on any Linux box inside your corporate firewall (assuming you are using port 30 as the redirector):<br>
+<code>htc -F 30 remote_ip:80<br>
+ssh -p 30 -o NoHostAuthenticationForLocalhost=yes login@localhost</code></p>
+	<p>The only trick is the “NoHostAuthenticationForLocalhost=yes” option on ssh.<br>
+Without it, you’ll get an “ssh_exchange_identification: Connection closed by remote host” error, because of the host hopping.</p>
+	<p>See you in 2 years for the next episode then. <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley">
+</p>
+	</div>
+
+	
+
+</div>
+
+
+
+<h2>2005.09.06 (Tuesday)</h2>	
+<div class="post" id="post-38">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=38" rel="bookmark">See you in hell, dodgy Windows processes!</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 15:58:45 GMT (1126022325 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=38">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Guess
+Redmond has finally got bugged by what UNIX people have doing for
+years… TASKLIST and TASKKILL are native Windows XP commands (couldn’t
+call ‘em ‘ps’ and ‘kill’ like reasonable people?):</p>
+	<p><code>TASKLIST [/S system [/U username [/P [password]]]]<br>
+         [/M [module] ¦ /SVC ¦ /V] [/FI filter] [/FO format] [/NH]</code></p>
+	<p><code>Description:<br>
+    This command line tool displays a list of application(s) and<br>
+
+    associated task(s)/process(es) currently running on either a local or<br>
+    remote system.</code></p>
+	<p><code>TASKKILL [/S system [/U username [/P [password]]]]<br>
+         { [/FI filter] [/PID processid ¦ /IM imagename] } [/F] [/T]</code></p>
+	<p><code>Description:<br>
+    This command line tool can be used to end one or more processes.<br>
+
+    Processes can be killed by the process id or image name.</code></p>
+	<p>Is this the end of the second most annoying loosedows behaviour ever?</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2005.08.26 (Friday)</h2>	
+<div class="post" id="post-37">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=37" rel="bookmark">XDM/KDM remote root logon on SuSE ES 9.0</a></h3>
+
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — &gt;NIL: @ 12:44:29 GMT (1125060269 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=37">Edit This</a> </div>
+	
+	<div class="storycontent">
+			<p>Always a struggle, dammit. Get your act together guys!<br>
+1. edit /etc/opt/kde3/share/config/kdm/kdmrc (yeah, I know, there are
+kdmrc’s xdmrc’s all over the place! This one’s the right one)<br>
+<code>[Xdmcp]<br>
+
+# Whether KDM should listen to XDMCP requests. Default is true.<br>
+Enable=true</code><br>
+2. edit /etc/sysconfig/displaymanager (to get rid of the “no foreign root login allowed” error)<br>
+<code>#<br>
+# Allow remote access of the user root to your display manager<br>
+#<br>
+DISPLAYMANAGER_ROOT_LOGIN_REMOTE="yes"</code></p>
+	<p>Voilà!
+</p>
+
+	</div>
+	
+
+</div>
+
+
+
+<h2>2005.08.15 (Monday)</h2>	
+<div class="post" id="post-36">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=36" rel="bookmark">IMDB’s top 250</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=9" title="View all posts in Movies" rel="category tag">Movies</a> — &gt;NIL: @ 23:16:20 GMT (1124147780 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=36">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Funny how <a href="http://www.imdb.com/title/tt0068646/">movies with an undeserved aspiration for the top spot</a>
+will always yield a reference Citizen Kane, whereas, Citzen Kane is
+such a self contained masterpiece that it doesn’t need to compare
+itself to any other movie <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+	<p>But
+anybody knows something’s amiss when Shawshank Redemption continuously
+occupies slot #2. I mean, the movie’s good, but it should take more
+than that to achieve a place in the top 5 (let alone the top 3). Show
+me a cinematic effect that makes you go “Wow!” in Shawshank’s (no, I’m
+NOT talking FX, I’m talking cinematography!). No? Thought so…</p>
+	<p>And
+since you’re so kind as asking, the ones that I have seen that should
+either NOT be in the top #250 or at a much lower place than it
+currently is:<br>
+Spider-Man 2, Dogville (interesting but not top #250 material), The
+Terminator, Ed Wood (Scissorhands is better suited for that!), Big Fish
+(at best, this should be #249 or something), Finding Neverland (lower,
+much lower), Kill Bill Vol. 2 (I’ve seen the first one: puh-lease, that
+was enough!), Reservoir Dogs, Kill Bill Vol. 1 (and let’s kill the
+suspens, anything by Tarantino should be out), Saving Private Ryan
+(should be low rank - there are much better Spielbergs out there.
+Besides, if you drop the first 1/2 hour of the movie, there’s not much
+top #250 material left, is there. We’re talking about feature films,
+not short stories), Fight Club (highly overrated), American Beauty
+(lower or out!), Pulp Fiction (#11?!? are you kidding me?). Fargo
+should be lower too. Batman Begins in there as well? Oh Lord, is there
+no respect whatsoever for good cinema? Green Mile, lower.<br>
+
+Examples of films that should have replaced the above? (In no
+particular order): Tron, Millions, Secretary, Touching The Void, Paris
+Texas, The Hurricane, WarGames, K-Pax, Matrix Reloaded (and possibly
+Revolutions), Chicken Run, Contact, Apollo 13, Gattaca, one Harry
+Potter movie (but only one), Fearless, The Abyss (in replacement of
+both Terminators), ‘Bullit’, Always (in replacement of ‘Saving …
+Ryan’), The Bourne Identity, Porco Rosso, Kiki’s Delivery Service (If
+you have Totoro and Sen to Chihiro no kamikakushi, you might as well
+add these), Conspiracy Theory, Dances With Wolves, I Am Sam, Starship
+Troopers, Airplane!, A Very Long Engagement…</p>
+	<p>Now go and be infuriated. That’s your role…</p>
+	</div>
+	
+
+</div>
+
+
+
+	
+<div class="post" id="post-35">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=35" rel="bookmark">QOTD</a></h3>
+
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=1" title="View all posts in General" rel="category tag">General</a> — &gt;NIL: @ 15:45:31 GMT (1124120731 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=35">Edit This</a> </div>
+	
+	<div class="storycontent">
+			<p><em>“Join the army, see the world, meet interesting, exciting people, and kill them.”</em></p>
+	</div>
+	
+
+
+</div>
+
+
+
+<h2>2005.06.22 (Wednesday)</h2>	
+<div class="post" id="post-33">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=33" rel="bookmark">One day, you will see the light…</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=16" title="View all posts in Advocacy" rel="category tag">Advocacy</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=18" title="View all posts in Gaming" rel="category tag">Gaming</a> — &gt;NIL: @ 12:21:12 GMT (1119442872 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=33">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Well, I’m in a good mood today, since the PSP 1.5 firmware was hacked in a <strong>proper</strong> manner to allow you to run homebrew. Did I tell you the PSP rocked? Therefore, I shall be playing the best game ever, a.k.a. <em>“Another World”</em>, on the PSP before long.<br>
+<a href="http://www.idlethumbs.net/display.php?id=13">Speaking of which…</a>:</p>
+	<blockquote><p>“Another
+World should serve as a reminder that some games were so damn good that
+you didn’t need to be collecting every star or unlocking secrets in
+order to garner replay value, you just wanted to experience it again
+and again to get every last drop of pixelated pleasure.”</p></blockquote>
+	<blockquote><p>“Half
+Life is often credited with mixing narrative snippets into gameplay,
+but Another World had already done it. ICO is lauded for its minimalist
+gameplay and lack of superimposed interface elements, but Another World
+had already done it. If a game were to come out today with the same
+kind of originality, minimalism and simple but highly suggestive
+cinematic shots that Another World pioneered in 1991, there’s no
+telling how many industry awards it would round up. Another World is
+one for the gaming history books.”</p></blockquote>
+
+	</div>
+	
+
+</div>
+
+
+
+<h2>2005.01.24 (Monday)</h2>	
+<div class="post" id="post-32">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=32" rel="bookmark">DOS attacks anyone?</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=17" title="View all posts in rpc1.org" rel="category tag">rpc1.org</a> — &gt;NIL: @ 22:52:34 GMT (1106607154 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=32">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>rule to REJECT from a specific number of SYN per secs to prevent SynFlood :</p>
+	<p>iptables -A INPUT -p tcp –syn -m limit –limit 1/s -j ACCEPT
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2005.01.09 (Sunday)</h2>	
+
+<div class="post" id="post-31">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=31" rel="bookmark">Region Free hack for the Sony DVP-NS585P standalone player</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=11" title="View all posts in HiFi / Video" rel="category tag">HiFi / Video</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=12" title="View all posts in Hardware 2" rel="category tag">Hardware 2</a> — &gt;NIL: @ 22:47:13 GMT (1105310833 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=31">Edit This</a> </div>
+	
+	<div class="storycontent">
+
+			<p>Note: This hack should world for most Sony DVP players</p>
+	<p>So,
+you finally took the plunge and got yourself one of these (relatively)
+good value Sony DVP players. But then, thanks to the !”?$%^%$?! MPAA,
+you find yourself locked back into a single region: SHOCK AND HORROR!<br>
+By now, you’re been browsing over the internet, and what you found are many <strong>expensive</strong>
+&amp; impractical offers that say they can turn your Sony player region
+free by sending you some ridiculously priced stuff, or you found a list
+of codes to be used with yet again an <strong>expensive</strong> ‘universal’ remote controller which you don’t have.</p>
+	<p>There has to be a MUCH CHEAPER and almost immediate solution to get your player region free, dammit!<br>
+
+Well, if you have a PC with a serial port, there is. Exposed below is a <strong>very cheap and simple  solution to turn your Sony DVD player into a region free one</strong>.</p>
+	<p>But first, I’ve got to acknowledge that this is merely a rip off what you can find on <a href="http://www.selen.org/sonydvd.html"> selen.org’s site</a>.  I especially don’t want to take any credit for what is other’s hard work. In particular, I got to thank <strong>Blank Frank</strong>
+for the excellent winsamp utility, which is the keystone of this
+process. I obviously got to thank the selen’s site for the Sony winsamp
+codes, and finally, the very simple montage I give comes straight from
+the “Simple transmitter circuit on serial port” diagram you can see at
+the <a href="http://www.lirc.org/transmitters.html">lirc site</a>.<br>
+The things you do with a good search engine! <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+
+	<p>So,
+the trick here is to use the winsamp utility with cheapest and simplest
+InfraRed (IR) transmitter montage we can plug on a PC’s serial port,
+and then use the PC to send the unlock codes to the DVP unit, as if we
+were using one of these Universal Remote Controls. Yes, you can easily
+turn your PC into a universal remote. Nifty, heh?</p>
+	<p>Of course, you will still need to build an InfraRed transmitter, but, as the picture below proves, this is really no big deal.<br>
+In fact, you might even not need a soldering iron if you find your own
+way to make each component stick with the other (I wouldn’t recommand
+sticky tape, but it will probably do if you don’t have anything else).
+The thing is, if everything goes well, we’re only going to use that
+small IR transmitter once, so it doesn’t have to be quakeproof
+electronics. As long as each component is connected to the other in the
+right order and the whole thing is plugged properly into the serial
+port, it’ll do.</p>
+	<p>To
+build the IR transmitter, you will need the following, which you should
+be able to find without trouble in any electronics component retail:<br>
+- one LD271 IR LED (Siemens GaAs 950 nm Infrared LED - <a href="http://workshop.ee.itb.ac.id/upload/datasheet/ld271.pdf">datasheet</a>)<br>
+- one 1N4148 diode<br>
+
+- one 1 kO (one kilo Ohm) 0.6 W resistor</p>
+	<p>This should cost around €1 (or $1) at any good electronics store </p>
+	<p>Once
+you got those, simply build the IR emitter as shown in the picture
+below. Note that the diode is connected to the longest leg of the IR
+LED (the anode) with the black ring end of the diode (the cathode)
+towards the LED. It is very important to connect the diode and the LED
+as described above, as these components are polarized. The resistor
+(light blue with colored rings on the picture) has not polarity and can
+be connected in any direction, but the anode from one polarized
+component should always be connected to the cathode of another
+polarized component.</p>
+	<p><img src="http://nil.rpc1.org/files/sony_dvp/Simple%20IR%20Transmitter.png" alt="Simple IR Transmitter montage"></p>
+	<p>With
+the IR transmitter complete, all you need to do is connect the anode of
+the LED (which should be the pin with the diode by now) to the TxD pin
+(pin #3) of a PC serial connector , and the cathode (pin with the
+resistor) to the Signal Ground (pin #5) and use winsamp to transmit the
+unlock code.</p>
+	<p>Of course connecting the transmitter directly to
+the PC serial port can be quite inconvenient, first because this is a
+male connector, so you’ll need crimp connectors (as in the picture) or
+something else to hold the pins in place, and also because then you
+will have to find a way to place your PC so that the IR LED is less
+than a few centimeters to the Remote sensor of the DVD unit.</p>
+	<p>The
+best solution is therefore to plug it into a serial cable if you have
+one, so that you can move the LED around without having to hold some
+cumbersome piece of equipment in your arms. In the picture below the IR
+transmitter is plugged into a DB9 serial extension cable. I used crimp
+connectors because the end is male there again, but this is no big
+deal. The best of course is to use have a DB9 female to female cable,
+because then you can do without the crimp connectors and just stick the
+pins of the transmitter in there. But then you have to know whether
+it’s a crossed cable (null modem) or a straight one, as you will need
+to use pin#2 (RxD) instead of pin #3 (TxD) is it’s a null modem cable.</p>
+
+	<p><img src="http://nil.rpc1.org/files/sony_dvp/Plugged%20IR%20Transmitter.png" alt="The IR Transmitter montage plugged onto a serial cable"></p>
+	<p>The
+pins should be indicated on the cable or the COM: port itself (if you
+look closely), so making sure you plug the transmitter properly
+shouldn’t be a big deal. Else you can look for the numerous pinout
+diagrams of an RS232 port on the internet.</p>
+	<p>At this stage I
+also have to stress out that USING THIS MONTAGE WILL PUT SOME STRESS ON
+THE SERIAL PORT, AS THE ORIGINAL PC’S SERIAL PORT HAS NOT BEEN DESIGNED
+TO DRIVE CURRENT THROUGH A LED. I therefore take no responsability in
+any damage that might occur. However, if your PC is less than 10 years
+old, it should be built to handle that kind of stress (which we limited
+to the bare minimum by adding a resistor in our montage), and since
+this should be a one of operation, there’s not much sleep to be lost
+over it (yes, I tested it on my PC and it worked flawlessly). On recent
+PC’s, I doubt this will put that much of a strain on your serial port
+(because most recent PC’s take provision for that kind of stuff) but
+you need to understand the risks associated with this operation.</p>
+	<p>OK,
+at this stage, I will assume that you have our $1 IR trnasmitter
+plugged onto your COM2 serial port, and you can then follow the
+procedure detailled on <a href="http://www.selen.org/sonydvd.html">selen’s site</a>:</p>
+	<p>1. Download the winsamp package from <a href="http://www.veg.nildram.co.uk/remote.htm">Blank Frank’s site</a> (or this <a href="http://nil.rpc1.org/files/sony_dvp/remote13.zip">local copy</a>).<br>
+
+2. Extract the package onto a bootable DOS floppy disk.<br>
+3. Download the <a href="http://www.selen.org/files/REMOTE.TXT">IR code file from selen’s</a> (or this <a href="http://nil.rpc1.org/files/sony_dvp/REMOTE.TXT">local copy</a>) and place it in the same directory as the package above.<br>
+4. Boot up your PC from the floppy disk and run winsamp.exe, it will
+use COM2: by default, which is the port where your simple IR
+transmitter should be connected. If you are using COM1: indicate this
+with the command ‘winsamp C1'.<br>
+5. Press the ‘r’ key to load up the unlock codes into winsamp.<br>
+6. Locate the stylized ‘R’ logo (an ‘R’ drawn in one line, with an
+extra vertical leg on the left) on the face of your DVD Player which
+indicates the location of the IR Remote Control receiver. For the
+DVP-NS585P, it is located at the right of the front panel, under the
+“Eject” button. You need to place our IR Transmitter less than 2 or 3
+cm from this receiver for the hack to work.<br>
+7. Make sure your DVD player is in standby mode with no disc in the drive.<br>
+
+8. Run the IR codes from 1 to 5 by pressing Enter on each corresponding button.<br>
+9. Your DVD player should start up and display the text “SUCCESS” (With
+the DVP-NS585P, this appears on the front panel, not on the TV)<br>
+10. Wait for your player to return to standby mode. If it doesn’t do this automatically, repeat step 8 until it shuts down<br>
+11. Enjoy having turned your Sony DVD player into a Region Free one for peanuts. <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley">
+And be a nice person; if you know someone else with a region protected
+Sony DVD player, lend them your IR transmitter and have them follow
+this procedure so that they can be region free too…
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2004.08.24 (Tuesday)</h2>	
+<div class="post" id="post-30">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=30" rel="bookmark">httrack commandline to get the binaries files off a page</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a> — site admin @ 12:02:37 GMT (1093348957 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=30">Edit This</a> </div>
+	
+	<div class="storycontent">
+			<p>This one works (with progress indication):<br>
+
+<code>httrack -g -p2 -r2 -%h -#p -%v http://some.site.org -*.php -*.html -*.png -*.jpg -*.gif</code>
+</p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2004.08.03 (Tuesday)</h2>	
+<div class="post" id="post-28">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=28" rel="bookmark">DRM is bad</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=16" title="View all posts in Advocacy" rel="category tag">Advocacy</a> — site admin @ 12:49:09 GMT (1091537349 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=28">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>DRM systems don’t work. This one’s an oldie but I forgot to link it here. Wanna know <a href="http://www.dashes.com/anil/stuff/doctorow-drm-ms.html">why</a>?</p>
+	</div>
+	
+	<div class="feedback">
+                        Comments Off	</div>
+
+</div>
+
+
+<h2>2004.07.18 (Sunday)</h2>	
+<div class="post" id="post-27">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=27" rel="bookmark">Hope Depl0y is not gonna kill me</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=1" title="View all posts in General" rel="category tag">General</a> — &gt;NIL: @ 21:36:27 GMT (1090186587 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=27">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>OK, so I dastardly abandonned Depl0y’s excellent blog engine for <a href="http://wordpress.org/">WordPress</a>…<br>
+Well, the truth is, Depl0y has other things to worry about now <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley"> , and you can’t beat a group of people working with the GPL in the palm of their hand.<br>
+Plus this blog looks nice “out of the box”, which spares the need to be creative <img src="blog_page1_files/icon_razz.gif" alt=":-P" class="wp-smiley">
+</p>
+	</div>
+	
+
+
+</div>
+
+
+
+<h2>2004.07.13 (Tuesday)</h2>	
+<div class="post" id="post-26">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=26" rel="bookmark">Time is on your side</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 13:12:10 GMT (1089724330 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=26">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>Some useful NTP stuff:</p>
+	<pre>o ntpq
+pe : lists current servers
+as : associations
+rv &lt;as ID&gt;</pre>
+	<pre>o ntpdate -d -v ntp.server.name</pre>
+	</div>
+	
+	<div class="feedback">
+                        Comments Off	</div>
+
+</div>
+
+
+
+<h2>2004.07.09 (Friday)</h2>	
+<div class="post" id="post-25">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=25" rel="bookmark">Basic MySQL commands</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 13:23:57 GMT (1089379437 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=25">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<pre>show databases;
+use <db_name>
+show tables;
+create database newdb;
+grant INSERT,SELECT on root.* to newdbuser@localhost;
+set password for newdbuser@localhost=PASSWORD(’new_password’);
+grant CREATE, INSERT, SELECT, DELETE, UPDATE, ALTER on newdb.* to newdbuser@localhost;
+grant CREATE, INSERT, SELECT, DELETE, UPDATE, ALTER on newdb.* to newdbuser;
+drop database newdb; </db_name></pre>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2004.05.11 (Tuesday)</h2>	
+<div class="post" id="post-24">
+
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=24" rel="bookmark">I fucking hate Microsoft!!!</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=16" title="View all posts in Advocacy" rel="category tag">Advocacy</a> — &gt;NIL: @ 01:57:22 GMT (1084240642 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=24">Edit This</a> </div>
+	
+	<div class="storycontent">
+
+			<p>Rot
+in hell, Bill Gates!!!! Don’t fucking ever try to prevent ME to do what
+I want with MY computer, like erasing these bloody undeletable files.</p>
+	<p>Ever got that message?<br>
+“Error deleting file or folder<br>
+Cannot delete yada: it is used by another person or program.<br>
+Close any program that might be using the file and try again”</p>
+	<p>Sounds
+familiar heh? And you tried logon/logoff/reboot/safe mode/chkdisk and
+all that crap and nothing works, and all the M$ articles on the net
+tell you it’s because you’re in NTFS, while you know darn well that
+you’re on FAT32 partition.</p>
+	<p>Well, let there be light: <a href="http://www.theeldergeek.com/delete_undeletable_file.htm">Have a look here</a>!</p>
+
+	<p>The solution:<br>
+1/ Open a dos prompt<br>
+2/ Open the Task Manager and KILL KILL KILL that Explorer, because
+that’s the SOB that’s ultimately keeping a bloody lock on your file!!!<br>
+3/ While Explorer is being kicked in the nuts (and it deserves it), use the DOS del command to get rid of your file at last.<br>
+4/ Enjoy the BLISS OF BEING BACK IN CONTROL OF YOUR COMPUTER AGAIN</p>
+	<p>As any Linux user will tell you: “Well I never…” (…ever have that kind of problem on Linux)</p>
+	<p>So that’s the end of one of the MOST FRUSTRATING BEHAVIOUR OF LOOSEDOWS EVER.
+</p>
+
+	</div>
+	
+
+</div>
+
+
+
+<h2>2004.04.30 (Friday)</h2>	
+<div class="post" id="post-23">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=23" rel="bookmark">Mmm… Swappiness</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=13" title="View all posts in OSes" rel="category tag">OSes</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 17:02:00 GMT (1083344520 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=23">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>But does it comes with extra cheese?<br>
+To tune, simply echo a value from 0 to 100 onto
+/proc/sys/vm/swappiness. The higher a number set here, the more the
+system will swap.<br>
+<a href="http://kerneltrap.org/node/view/3000">More info</a></p>
+	</div>
+	
+
+</div>
+
+
+
+<h2>2004.01.14 (Wednesday)</h2>	
+
+<div class="post" id="post-22">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=22" rel="bookmark">Installing apache 2.0.x + PHP 4.3 on Slackware 9.1</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=14" title="View all posts in Admin" rel="category tag">Admin</a> — &gt;NIL: @ 11:53:59 GMT (1074081239 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=22">Edit This</a> </div>
+	
+	<div class="storycontent">
+
+			<p>o Add the following to config.layout:<br>
+<code># Slackware 9.1<br>
+prefix: /usr<br>
+exec_prefix: ${prefix}<br>
+bindir: ${prefix}/bin<br>
+sbindir: ${prefix}/sbin<br>
+libdir: ${prefix}/lib<br>
+libexecdir: ${prefix}/libexec<br>
+
+mandir: ${prefix}/man<br>
+sysconfdir: /etc/apache<br>
+datadir: /var/www<br>
+installbuilddir: ${datadir}/build<br>
+errordir: ${datadir}/error<br>
+iconsdir: ${datadir}/icons<br>
+htdocsdir: ${datadir}/html<br>
+manualdir: ${datadir}/manual<br>
+cgidir: ${datadir}/cgi-bin<br>
+
+includedir: ${prefix}/include/apache<br>
+localstatedir: /var<br>
+runtimedir: ${localstatedir}/run<br>
+logfiledir: ${localstatedir}/log/apache<br>
+proxycachedir: ${localstatedir}/cache/apache</code><br>
+o Install hpptd as follows:<br>
+<code>./configure --enable-so --enable-cgi --enable-info
+--enable-rewrite --enable-speling --enable-usertrack --enable-deflate
+--enable-ssl --enable-mime-magic --enable-layout=Slackware<br>
+make<br>
+make install</code><br>
+
+o Install PHP as follows:<br>
+<code>./configure --prefix=/var/www/php --with-apxs2=/usr/sbin/apxs
+--with-config-file-path=/etc/apache/ --enable-sockets --with-mysql=/usr
+--with-zlib-dir=/usr/lib --with-gd<br>
+make<br>
+make install<br>
+cp php.ini-recommended /etc/apache/php.ini</code><br>
+o Modify /etc/apache/httpd.conf to have:<br>
+<code>LoadModule php4_module modules/libphp4.so<br>
+AddType application/x-httpd-php .php<br>
+DirectoryIndex index.php index.html index.html.var</code></p>
+
+	<p>o Create file /var/www/html/test.php with the following content and test <img src="blog_page1_files/icon_wink.gif" alt=";)" class="wp-smiley"><br>
+<code>&lt;?php phpinfo(); ?&gt;</code>
+</p>
+	</div>
+	
+	<div class="feedback">
+                        Comments Off	</div>
+
+</div>
+
+
+<h2>2003.10.29 (Wednesday)</h2>	
+<div class="post" id="post-21">
+	 <h3 class="storytitle"><a href="http://nil.rpc1.org/wordpress/?p=21" rel="bookmark">Linux version of DVRFlash</a></h3>
+	<div class="meta">Filed under: <a href="http://nil.rpc1.org/wordpress/index.php?cat=4" title="View all posts in Computing" rel="category tag">Computing</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=5" title="View all posts in Firmwares" rel="category tag">Firmwares</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=6" title="View all posts in Development" rel="category tag">Development</a>, <a href="http://nil.rpc1.org/wordpress/index.php?cat=7" title="View all posts in Hardware" rel="category tag">Hardware</a> — &gt;NIL: @ 16:53:45 GMT (1067446425 ticks, and counting...)  <a href="http://nil.rpc1.org/wordpress/wp-admin/post.php?action=edit&amp;post=21">Edit This</a> </div>
+
+	
+	<div class="storycontent">
+			<p>We’ll need <a href="http://www.torque.net/sg/faq.html#%5B1.5%5D%20%20How%20to%20make%20an%20ATAPI%20cdrom%20appear%20as%20a%20SCSI%20device">this</a> if we want Agent Smith’s DVRFlash to support Linux…
+</p>
+	</div>
+	
+
+</div>
+
+
+
+ — <a href="index2.html">Next Page »</a>
+
+<!-- begin footer -->
+</div>
+
+
+
+<p class="credit"><cite>Once powered by <a href="http://wordpress.org/" title="Once Powered by WordPress, state-of-the-art semantic personal publishing platform."><strong>WordPress</strong></a></cite></p>
+
+</div>
+
+
+</body></html>
