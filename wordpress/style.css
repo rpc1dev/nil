@@ -1,6 +1,6 @@
 /*
 Theme Name: >NIL:
-Theme URI: http://nil.rpc1.org/
+Theme URI: https://nil.rpc1.org/
 Description: >NIL:'s original 1.2.x theme.
 Version: 1.1
 Author: >NIL:
@@ -165,7 +165,7 @@ ul.post-meta span.post-meta-key {
 }
 
 #header {
-	background: #001a3a url(http://nil.rpc1.org/files/nil-blog.png) repeat top;
+	background: #001a3a url(https://nil.rpc1.org/files/nil-blog.png) repeat top;
         height: 400px
 	width: 1276px 
 	border-bottom: double 3px #aba;
